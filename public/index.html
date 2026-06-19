@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biorhythm Dashboard — Know Your Cycles</title>
+  <meta name="description" content="Discover your biorhythm cycles — physical, emotional, intellectual & intuitive energy waves plotted beautifully based on your birthdate." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Animated background -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
+  <div class="app-wrapper">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">🌊</span>
+          <span class="logo-text">Biorhythm</span>
+        </div>
+        <p class="header-tagline">Your energy cycles, beautifully visualized</p>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="main">
+      <!-- Input card -->
+      <section class="card input-card" id="input-section">
+        <h1 class="card-title">When were you born?</h1>
+        <p class="card-subtitle">Enter your birthdate to unlock your personal energy cycles</p>
+        <div class="input-row">
+          <div class="date-input-wrap">
+            <label for="birthdate-input" class="sr-only">Birthdate</label>
+            <input
+              type="date"
+              id="birthdate-input"
+              class="date-input"
+              max=""
+              aria-label="Enter your birthdate"
+            />
+          </div>
+          <button id="analyze-btn" class="btn-primary" aria-label="Analyze biorhythm">
+            <span class="btn-label">Analyze</span>
+            <span class="btn-icon">→</span>
+          </button>
+        </div>
+        <p class="input-hint">✦ Your data never leaves your browser</p>
+      </section>
+
+      <!-- Loading state -->
+      <div class="loading-overlay" id="loading" aria-hidden="true">
+        <div class="spinner-ring"></div>
+        <p>Calculating your cycles…</p>
+      </div>
+
+      <!-- Results section (hidden until data loaded) -->
+      <section class="results" id="results" aria-live="polite" hidden>
+        <!-- Age banner -->
+        <div class="age-banner" id="age-banner"></div>
+
+        <!-- Today's stats -->
+        <div class="stats-grid" id="stats-grid"></div>
+
+        <!-- Chart -->
+        <div class="card chart-card">
+          <div class="chart-header">
+            <h2 class="chart-title">Your Biorhythm Waves</h2>
+            <div class="chart-controls">
+              <button class="day-btn active" id="btn-30" data-days="30">30d</button>
+              <button class="day-btn" id="btn-60" data-days="60">60d</button>
+              <button class="day-btn" id="btn-90" data-days="90">90d</button>
+            </div>
+          </div>
+          <div class="canvas-container">
+            <canvas id="biorhythm-canvas" aria-label="Biorhythm wave chart"></canvas>
+          </div>
+          <!-- Legend -->
+          <div class="legend" id="chart-legend"></div>
+        </div>
+
+        <!-- Insight card -->
+        <div class="card insight-card" id="insight-card">
+          <h2 class="insight-title">✦ Today's Reading</h2>
+          <div class="insight-body" id="insight-body"></div>
+        </div>
+
+        <!-- Reset -->
+        <button class="btn-ghost" id="reset-btn" aria-label="Change birthdate">
+          ← Change birthdate
+        </button>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Biorhythm theory suggests natural cycles govern our energy. Take it as a guide, not a gospel. 🌙</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
