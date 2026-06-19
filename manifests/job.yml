@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: Job
+
+metadata:
+  name: nodeapp-health-check-job
+  namespace: nodeapp
+
+spec:
+  completions: 1
+  parallelism: 1
+
+  template:
+    metadata:
+      labels:
+        app: batch-task
+
+    spec:
+      restartPolicy: Never
+
+      tolerations:
+      - key: "environment"
+        operator: "Equal"
+        value: "production"
+        effect: "NoSchedule"
+
+      containers:
+      - name: api-health-check
+        image: curlimages/curl:latest
+        command:
+        - sh
+        - -c
+
+        - |
+          echo "Starting Biorhythm API health check..."
+
+          curl -f http://nodeapp-service:5000/
+
+          echo "Application is responding successfully"

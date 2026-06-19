@@ -1,0 +1,17 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: nodeapp-ingress
+  namespace: nodeapp
+spec:
+  ingressClassName: nginx #tells which ingress controller control this app
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: nodeapp-service
+            port:
+              number: 5000
