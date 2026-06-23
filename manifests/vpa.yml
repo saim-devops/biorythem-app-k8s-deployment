@@ -1,0 +1,13 @@
+kind: VerticalPodAutoscaler
+apiVersion: autoscaling.k8s.io/v1
+metadata:
+  name: vpa-nodeapp
+  namespace: nodeapp
+
+spec:
+  targetRef:
+    name: nodeapp-deployment
+    apiVersion: apps/v1
+    kind: Deployment
+  updatePolicy:
+    updateMode: InPlaceOrRecreate
